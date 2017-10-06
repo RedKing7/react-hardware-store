@@ -26,6 +26,7 @@ class Shop extends Component {
                         productList={this.props.productList}
                         addProductToProductList={this.props.addProductToProductList}
                         isAdmin={this.isAdmin}
+                        removeProduct={this.props.removeProduct}
                      />
                }
             </div>

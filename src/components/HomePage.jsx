@@ -33,6 +33,12 @@ class HomePage extends Component {
       this.setState({productList: newProductList});
    }
 
+   removeProduct = (index) =>{
+      const changedProductList = [...this.state.productList];
+      changedProductList.splice(index, 1);
+      this.setState({productList: changedProductList});
+   }
+
    render(){
       return(
          <div>
@@ -42,6 +48,7 @@ class HomePage extends Component {
             <Shop 
                productList={this.state.productList}
                addProductToProductList={this.addProductToProductList}
+               removeProduct={this.removeProduct}
             />
          </div>
       )
