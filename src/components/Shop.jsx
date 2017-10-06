@@ -11,6 +11,11 @@ class Shop extends Component {
       }
    }
 
+   toggleAdmin = () =>{
+      const notAdmin = !this.state.isAdmin;
+      this.setState({isAdmin: notAdmin}); //best practice, rather than 'this.state.thing = !this.state.thing'
+   }
+
    render() {
       return (
          <div className='main'>
