@@ -15,6 +15,7 @@ class ProductList extends Component {
                         index={index}
                         isAdmin={this.props.isAdmin}
                         removeProduct={this.props.removeProduct}
+                        addToCart={this.props.addToCart}
                   />
             });
 

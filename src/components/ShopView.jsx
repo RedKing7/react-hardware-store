@@ -6,7 +6,10 @@ class ShopView extends Component {
       return (
          <div>
             <h1>Shop View</h1>
-            <ProductList productList={this.props.productList}/>
+            <ProductList
+               productList={this.props.productList}
+               addToCart={this.props.addToCart}
+            />
          </div>
       );
    }

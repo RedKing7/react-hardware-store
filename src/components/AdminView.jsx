@@ -9,7 +9,6 @@ class AdminView extends Component{
       return(
          <div>
             <h1>Admin View</h1>
-            
             <ProductList
                   productList={this.props.productList}
                   isAdmin={this.props.isAdmin}
