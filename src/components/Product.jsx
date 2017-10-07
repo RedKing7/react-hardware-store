@@ -20,19 +20,17 @@ const Product = ({
    }
 
    const handleCart = (e) =>{
-      console.log(index);
-      addToCart(index)
+      addToCart(index, itemIndex)
    }
 
    const handleRemove = (e) =>{
-      console.log(index, itemIndex)
       removeFromCart(index);
    }
 
    return (
       <div className='product'>
          <h3>{productName}</h3>
-         <div>${price}</div>
+         <div>${price.toFixed(2)}</div>
          <div>{description}</div>
          {
             !isCart ?
@@ -42,7 +40,7 @@ const Product = ({
                <button onClick={handleCart}>Add to cart</button>
             :
                <div>
-                  <div>{quantity}</div>
+                  <div>Quantity: {quantity}</div>
                   <button onClick={handleRemove}>Remove</button>
                </div>
          }

@@ -12,6 +12,7 @@ class CartView extends Component {
             itemIndex={item.index}
             isCart={true}
             quantity={item.quantity}
+            removeFromCart={this.props.removeFromCart}
          />
       })
 
@@ -20,7 +21,12 @@ class CartView extends Component {
             <h1>Cart View</h1>
             {cartComponents}
             <div>
-               <h4>Total: ${this.props.total}</h4>
+               {
+                  this.props.cart.length > 0 ?
+                     <h4>Total: ${this.props.total.toFixed(2)}</h4>
+                     :
+                     null
+               }
             </div>
          </div>
       );

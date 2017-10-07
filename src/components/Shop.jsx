@@ -19,12 +19,17 @@ class Shop extends Component {
 
    getTotal = () =>{
       let cart = this.state.cart;
-      console.log(cart);
       if(cart.length > 0){
          let prices = cart.map((item)=>{
-            return item.price;
+            if(item.quantity){
+               return item.price * item.quantity
+            } else {
+               return item.price;
+            }
          })
          this.setState({cartTotal: prices.reduce((sum, val)=>{return sum + val})})
+      } else {
+         this.setState({cartTotal:0})
       }
       return this.state.total;
    }
@@ -32,10 +37,23 @@ class Shop extends Component {
    addToCart = (index) =>{
       const newCart = [...this.state.cart];
       const newCartItem = this.props.productList[index];
-      console.log(newCartItem);
       newCartItem.index = index;
-      newCart.push(newCartItem);
-      this.setState({cart: newCart}, this.getTotal);
+
+      let matchIndex = newCart.findIndex((item)=>{return item.index === index})
+      if(matchIndex !== -1){
+         newCart[matchIndex].quantity += 1;
+         this.setState({cart: newCart}, this.getTotal);         
+      } else {
+         newCartItem.quantity = 1;
+         newCart.push(newCartItem);
+         this.setState({cart: newCart}, this.getTotal);
+      }
+   }
+
+   removeFromCart = (index) =>{
+      const changedCart = [...this.state.cart];
+      changedCart.splice(index, 1);
+      this.setState({cart: changedCart}, this.getTotal);
    }
 
    render() {
@@ -66,6 +84,7 @@ class Shop extends Component {
                cart={this.state.cart}
                getTotal={this.getTotal}
                total={this.state.cartTotal}
+               removeFromCart={this.removeFromCart}
             />
          </div>
       );
